@@ -19,13 +19,15 @@ public class Picture {
     private Square wall;
     private Square window;
     private Triangle roof;
-    private Circle sun;
+    private Circle sun, sun1;
+    private int yPosition;
 
     /**
      * Constructor for objects of class Picture
      */
     public Picture() {
         // nothing to do... instance variables are automatically set to null
+        yPosition = 60;
     }
 
     /**
@@ -50,11 +52,19 @@ public class Picture {
         roof.makeVisible();
 
         sun = new Circle();
-        sun.changeColor("yellow");
+        sun.changeColor("blue");
         sun.moveHorizontal(180);
         sun.moveVertical(-10);
         sun.changeSize(60);
         sun.makeVisible();
+        
+        sun1 = new Circle();
+        sun1.changeColor("yellow");
+        sun1.moveHorizontal(110);
+        sun1.moveVertical(-10);
+        sun1.changeSize(60);
+        sun1.makeVisible();
+        sun.slowMoveVertical(180);
     }
 
     /**
@@ -83,4 +93,19 @@ public class Picture {
         }
     }
 
+    public void slowMoveVertical(int distance) {
+        int delta;
+
+        if (distance < 0) {
+            delta = -1;
+            distance = -distance;
+        } else {
+            delta = 1;
+        }
+
+        for (int i = 0; i < distance; i++) {
+            yPosition += delta;
+            draw();
+        }
+    }
 }

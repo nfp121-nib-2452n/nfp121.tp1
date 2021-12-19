@@ -122,4 +122,13 @@ public class AuditeurCNAMTest extends junit.framework.TestCase {
         assertEquals(" nom avec accent (é devient e) ? ", "chloe_c",
             auditeur1.login());
     }
+    
+    public void test_nom_avec_pourcentage() {
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("to%to",
+                "samir", "12345");
+        assertEquals("TOTO Samir", "to%to", auditeur1.nom());
+        assertEquals("TOTO Samir", "samir", auditeur1.prenom());
+        assertEquals(" nom avec pourcentage ? ", "to_to_s",
+            auditeur1.login());
+    }
 }
